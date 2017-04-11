@@ -1,36 +1,36 @@
-# base64url  [![Build Status](https://secure.travis-ci.org/brianloveswords/base64url.png)](http://travis-ci.org/brianloveswords/base64url)
+# base64url-ts2 
 
 Converting to, and from, [base64url](http://en.wikipedia.org/wiki/Base64#RFC_4648)
+
+# Note
+
+This is a fork of the original `base64url` which hasn't been merging pull requests. It was no longer possible to use the package in a TypeScript project without modification. This version has been updated to remove build time dependencies from the published module.
 
 # Install
 
 ```bash
-$ npm install base64url
+$ npm install base64url-ts2
 ```
 
 After installing with `npm` you can require this library from JavaScript or TypeScript:
 
 JavaScript
 ```js
-const base64url = require('base64url');
+const base64url = require('base64url-ts2');
 ```
 
 TypeScript:
 ```typescript
-import base64url from "base64url";
+import base64url from "base64url-ts2";
 ```
 
 # Usage
 
-## CLI
-
-The CLI has been removed. For the time being, please install `base64url@1.0.6` if you need the CLI.
-
 ## Library
 
-### base64url(input: string | Buffer, encoding: string = "utf8"): string
+### base64url(input: EncodedString, encoding: string = "utf8"): string
 
-### base64url.encode(input: string | Buffer, encoding: string = "utf8"): string
+### base64url.encode(input: EncodedString, encoding: string = "utf8"): string
 
 base64url encode `input`. Input should be a `string` or a `Buffer`.
 

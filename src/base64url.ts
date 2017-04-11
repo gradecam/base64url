@@ -1,9 +1,8 @@
-/// <reference path="../typings/index.d.ts" />
-
 /**
  * Encoding type
  */
-export declare type Encoding = "ascii" | "utf8" | "utf16le" | "ucs2" | "utf16le" | "base64" | "binary" | "hex"
+export declare type Encoding = "ascii" | "utf8" | "utf16le" |
+                                "ucs2" | "base64" | "binary" | "hex";
 
 /**
  * Encoded string or buffer
@@ -12,14 +11,14 @@ export declare type EncodedString = string | Buffer;
 
 import padString from "./pad-string";
 
-function encode(input: EncodedString, encoding: string = "utf8"): string {
+function encode(input: EncodedString, encoding: Encoding = "utf8"): string {
     if (Buffer.isBuffer(input)) {
         return fromBase64(input.toString("base64"));
     }
     return fromBase64(new Buffer(input as string, encoding).toString("base64"));
 };
 
-function decode(base64url: EncodedString, encoding: string = "utf8"): string {
+function decode(base64url: EncodedString, encoding: Encoding = "utf8"): string {
     return new Buffer(toBase64(base64url), "base64").toString(encoding);
 }
 
@@ -47,45 +46,45 @@ function toBuffer(base64url: EncodedString): Buffer {
 export interface Base64Url {
     /**
      * Encode input to base64url
-     * 
+     *
      * @param {EncodedString} input Incoming value
      * @param {string} [encoding]
      * @returns {string}
      */
-    (input: EncodedString, encoding?: string): string;
+    (input: EncodedString, encoding?: Encoding): string;
     /**
      * Encode input to base64url
-     * 
+     *
      * @param {EncodedString} input Incoming value
      * @param {string} [encoding]
      * @returns {string}
      */
-    encode(input: EncodedString, encoding?: string): string;
+    encode(input: EncodedString, encoding?: Encoding): string;
     /**
      * Convert a base64url encoded string into a raw string
-     * 
+     *
      * @param {EncodedString} base64url base64url encoded value
      * @param {string} [encoding]
      * @returns {string}
      */
-    decode(base64url: EncodedString, encoding?: string): string;
+    decode(base64url: EncodedString, encoding?: Encoding): string;
     /**
-     * Convert a base64url encoded string to a base64 encoded string 
-     * 
-     * @param {EncodedString} base64url base64url encoded value 
+     * Convert a base64url encoded string to a base64 encoded string
+     *
+     * @param {EncodedString} base64url base64url encoded value
      * @returns {string}
      */
     toBase64(base64url: EncodedString): string;
     /**
      * Convert a base64 encoded string to a base64url encoded string
-     * 
+     *
      * @param {EncodedString} base64 base64 encoded value
      * @returns {string}
      */
     fromBase64(base64: EncodedString): string;
     /**
-     * Convert a base64url encoded string to a Buffer 
-     * 
+     * Convert a base64url encoded string to a Buffer
+     *
      * @param {EncodedString} base64url base64url encoded string
      * @returns {Buffer}
      */
